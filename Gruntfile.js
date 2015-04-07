@@ -88,13 +88,13 @@ module.exports = function(grunt) {
 			html: {
 				options: {
 					removeComments: true,
-        	collapseWhitespace: true,
-        	removeEmptyAttributes: true,
-        	removeScriptTypeAttributes: true,
-        	removeStyleLinkTypeAttributes: true,
-        	removeOptionalTags: true,
-        	minifyJS: true,
-        	minifyCSS: true
+					collapseWhitespace: true,
+					removeEmptyAttributes: true,
+					removeScriptTypeAttributes: true,
+					removeStyleLinkTypeAttributes: true,
+					removeOptionalTags: true,
+					minifyJS: true,
+					minifyCSS: true
 				},
 				files: [{
 					expand: true,
@@ -114,29 +114,29 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
-	  responsive_images: {
-	    options: {
-	      engine: "im",
-	      quality: 60,
-	      rename: false
-	    },
-	    profile: {
-	    	options: {
-	    		sizes: [{width: 100}]
-	    	},
-	    	files: {
-	    		'./evaluate/img/pizzeria.jpg': 'views/images/pizzeria.jpg'
-	    	}
-	    },
-	    pizza: {
-	    	options: {
-	    		sizes: [{width: 360}],
-	    	},
-	    	files: {
-	    		'./evaluate/views/images/pizzeria.jpg': 'views/images/pizzeria.jpg'
-	    	}
-	    }
-	  },
+		responsive_images: {
+			options: {
+				engine: "im",
+				quality: 60,
+				rename: false
+			},
+			profile: {
+				options: {
+					sizes: [{width: 100}]
+				},
+				files: {
+					'./evaluate/img/pizzeria.jpg': 'views/images/pizzeria.jpg'
+				}
+			},
+			pizza: {
+				options: {
+					sizes: [{width: 360}],
+				},
+				files: {
+					'./evaluate/views/images/pizzeria.jpg': 'views/images/pizzeria.jpg'
+				}
+			}
+		},
 		imagemin: {
 			resized: {
 				options: {
@@ -196,47 +196,47 @@ module.exports = function(grunt) {
 			}
 		},
 		pagespeed: {
-      options: {
-        nokey: true,
-        locale: "en_US",
-        threshold: 70
-      },
-      desktop: {
-        options: {
-          strategy: "desktop"
-        }
-      },
-      mobile: {
-        options: {
-          strategy: "mobile"
-        }
-      }
+			options: {
+				nokey: true,
+				locale: "en_US",
+				threshold: 70
+			},
+			desktop: {
+				options: {
+					strategy: "desktop"
+				}
+			},
+			mobile: {
+				options: {
+					strategy: "mobile"
+				}
+			}
 		}
 	});
 
-  grunt.registerTask('psi-ngrok', 'Run pagespeed with ngrok', function() {
-    if (!grunt.option('dirName')) {
-    	var msg = "\nOption '--dirName' was not used:\n" +
-    		"Thus will run tests in the directory of Gruntfile.js.\n" +
-    		"To run on different folder - type:\n" +
-    		"grunt webspeed --dirName=<full\\path\\to\\folder\\" +
-    		"with\\index.html>\n" +
-    		"or use relative one to Gruntfil.js directory.\n";
-    	grunt.log.write(msg['yellow'].bold);
-    }
+	grunt.registerTask('psi-ngrok', 'Run pagespeed with ngrok', function() {
+		if (!grunt.option('dirName')) {
+			var msg = "\nOption '--dirName' was not used:\n" +
+				"Thus will run tests in the directory of Gruntfile.js.\n" +
+				"To run on different folder - type:\n" +
+				"grunt webspeed --dirName=<full\\path\\to\\folder\\" +
+				"with\\index.html>\n" +
+				"or use relative one to Gruntfil.js directory.\n";
+			grunt.log.write(msg['yellow'].bold);
+		}
 
-    var done = this.async();
+		var done = this.async();
 
-    ngrok.connect(port, function(err, url) {
-      if (err !== null) {
-        grunt.fail.fatal(err);
-        return done();
-      }
-      grunt.config.set('pagespeed.options.url', url);
-      grunt.task.run('pagespeed');
-      done();
-    });
-  });
+		ngrok.connect(port, function(err, url) {
+			if (err !== null) {
+				grunt.fail.fatal(err);
+				return done();
+			}
+			grunt.config.set('pagespeed.options.url', url);
+			grunt.task.run('pagespeed');
+			done();
+		});
+	});
 
 	grunt.loadNpmTasks('grunt-string-replace');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
