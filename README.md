@@ -33,4 +33,5 @@ In views/js/main.js:
 	bodyScroll value, instead of calculating phase inside the for loop.
 	- comments were added.
 
-
+Note: pizza.html was also optimized to reach above 90 PageSpeed scores. Because
+	a script was appended to the body to eliminate bootstraps renderblocking, PageSpeed asks to "Size content to viewport", but images actually render fine, mobile devices inclusive.
